@@ -434,7 +434,9 @@ def main():
         for k in ("bets_a", "bets_b", "money_a", "money_b"):
             r[k] = pct(r[k])
     latest = max(r["t"] for r in rows)
-    live = {r["slug"] for r in rows if r["t"] == latest}
+    # Keep games seen in the last 12 hours, so a snapshot that only has some games
+    # (for example overnight, between days) doesn't make the other cards disappear.
+    live = {r["slug"] for r in rows if (latest - r["t"]).total_seconds() <= 12 * 3600}
     data = {}
     for r in rows:
         if r["slug"] in live:
@@ -489,7 +491,8 @@ def main():
         '<div class="seg"><span>Sort</span><button data-k="start" class="on">Start time</button>'
         '<button data-k="flags">Most flags</button></div>'
         '<div class="seg days"><span>Day</span><button data-d="all" class="on">All</button>'
-        '<button data-d="0">Today</button><button data-d="1">Tomorrow</button></div>'
+        '<button data-d="-1">Yesterday</button><button data-d="0">Today</button>'
+        '<button data-d="1">Tomorrow</button></div>'
         f'<div id="list">{"".join(g["html"] for g in games)}</div>'
         '<p class="note">Chart key: blue line is money % minus bets % for the first listed side (above 0 means '
         'money is heavier than tickets); the black step line is the market line; an orange dashed line marks a '
