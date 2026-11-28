@@ -19,7 +19,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import requests
@@ -44,7 +44,7 @@ def fetch(date=None):
     params = {"date": date} if date else None
     r = requests.get(
         URL, params=params, timeout=30,
-        headers={"User-Agent": "Mozilla/5.0 (personal research script)"},
+        headers=UA,
     )
     r.raise_for_status()
     return r.text
@@ -102,8 +102,73 @@ def append(rows):
         w.writerows(rows)
 
 
+TIPS = "tip_times.csv"
+MAIN_URL = "https://www.scoresandodds.com/ncaab"
+UA = {"User-Agent": "Mozilla/5.0 (personal research script)"}
+TIP_RE = re.compile(r"(\d{1,2})/(\d{1,2})\s+(\d{1,2}):(\d{2})\s*([AP]M)", re.I)
+
+
+def parse_tips(html_text, now=None):
+    """Read each game's tip-off time (ET) from the main NCAAB page.
+
+    Returns ({slug: 'YYYY-MM-DD HH:MM'}, number of games seen). Each game's
+    header (e.g. '11/26 1:30PM') is looked up in the table that precedes the
+    game's Matchup link, so a game with no time is skipped, never guessed.
+    """
+    now = now or datetime.now(ET)
+    soup = BeautifulSoup(html_text, "html.parser")
+    tips, games = {}, set()
+    for a in soup.find_all("a", href=SLUG_RE):
+        slug = a["href"].split("?")[0].rstrip("/").split("/")[-1]
+        if slug in games:
+            continue
+        games.add(slug)
+        table = a.find_previous("table")
+        m = TIP_RE.search(table.get_text(" ", strip=True)) if table else None
+        if not m:
+            continue
+        mo, dy, hh, mm, ap = int(m[1]), int(m[2]), int(m[3]), int(m[4]), m[5].upper()
+        hh = hh % 12 + (12 if ap == "PM" else 0)
+        try:
+            tip = datetime(now.year, mo, dy, hh, mm, tzinfo=ET)
+        except ValueError:
+            continue
+        if (tip - now).days > 180:
+            tip = tip.replace(year=now.year - 1)
+        elif (now - tip).days > 180:
+            tip = tip.replace(year=now.year + 1)
+        tips[slug] = tip.strftime("%Y-%m-%d %H:%M")
+    return tips, len(games)
+
+
+def update_tips(date=None):
+    """Save tip times to tip_times.csv. Never raises: collecting splits comes first."""
+    try:
+        r = requests.get(MAIN_URL, params={"date": date} if date else None,
+                         timeout=30, headers=UA)
+        r.raise_for_status()
+        tips, n = parse_tips(r.text)
+        old = {}
+        if os.path.exists(TIPS):
+            old = {x["slug"]: x for x in csv.DictReader(open(TIPS, encoding="utf-8-sig"))}
+        stamp = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
+        for slug, tip in tips.items():
+            old[slug] = {"slug": slug, "tip_et": tip, "seen_et": stamp}
+        cutoff = (datetime.now(ET) - timedelta(days=14)).strftime("%Y-%m-%d %H:%M")
+        keep = sorted((v for v in old.values() if v["tip_et"] >= cutoff),
+                      key=lambda v: v["tip_et"])
+        with open(TIPS, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=["slug", "tip_et", "seen_et"])
+            w.writeheader()
+            w.writerows(keep)
+        print(f"tip times: read {len(tips)} of {n} games on the main page -> {TIPS}")
+    except Exception as e:
+        print("tip times skipped:", e, file=sys.stderr)
+
+
 def snapshot(date=None, debug=False, markets=("spread", "total", "moneyline"), games=()):
     rows = parse(fetch(date), debug=debug)
+    update_tips(date)
     rows = [r for r in rows if r["market"] in markets]
     if games:
         rows = [r for r in rows if any(g in r["slug"].lower() for g in games)]
