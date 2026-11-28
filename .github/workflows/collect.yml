@@ -1,7 +1,7 @@
 name: Collect splits
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
@@ -11,18 +11,35 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python splits_tracker.py once
-      - run: python build_page.py
+      - name: Collect
+        run: |
+          wc -l < splits_log.csv > /tmp/before
+          python splits_tracker.py once
+          cp tip_times.csv /tmp/tip_times.csv 2>/dev/null || true
       - name: Save results
         run: |
           git config user.name "splits-bot"
           git config user.email "splits-bot@users.noreply.github.com"
-          git add splits_log.csv docs/index.html
-          git diff --cached --quiet || (git commit -m "snapshot $(date -u +%FT%TZ)" && git pull --rebase && git push)
+          before=$(cat /tmp/before); total=$(wc -l < splits_log.csv)
+          if [ "$total" -le "$before" ]; then echo "No new rows to save"; exit 0; fi
+          tail -n +$((before+1)) splits_log.csv > /tmp/new_rows.csv
+          for i in 1 2 3 4 5; do
+            git fetch origin main -q
+            git reset --hard origin/main -q
+            cat /tmp/new_rows.csv >> splits_log.csv
+            [ -f /tmp/tip_times.csv ] && cp /tmp/tip_times.csv tip_times.csv
+            python build_page.py
+            git add splits_log.csv docs/index.html
+            [ -f tip_times.csv ] && git add tip_times.csv
+            git commit -qm "snapshot $(date -u +%FT%TZ)"
+            if git push; then exit 0; fi
+            sleep $((RANDOM % 10 + 3))
+          done
+          exit 1
