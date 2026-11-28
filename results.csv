@@ -1,52 +1,52 @@
 slug,event_id,away,home,away_score,home_score,spread_cls_away,total_cls_over,ml_cls_away,seen_et
-virginia-vs-xavier,236922360,Virginia,Xavier,83,71,win,win,win,2026-11-28 11:00:26
-liberty-vs-st-thomas,236953220,Liberty,St. Thomas,76,67,win,loss,win,2026-11-28 11:00:26
-iowa-state-vs-st-johns,241951560,St. John's,Iowa State,80,75,win,win,win,2026-11-28 11:00:26
-merrimack-vs-vermont,236983570,Vermont,Merrimack,57,75,loss,win,loss,2026-11-28 11:00:26
-hampton-vs-umass-lowell,236921850,Hampton,UMass Lowell,55,72,loss,loss,loss,2026-11-28 11:00:26
-memphis-vs-wake-forest,241946400,Memphis,Wake Forest,88,85,win,win,win,2026-11-28 11:00:26
-fresno-state-vs-south-alabama,236921180,Fresno State,South Alabama,81,61,win,loss,win,2026-11-28 11:00:26
-southern-university-vs-vanderbilt,236953150,Southern University,Vanderbilt,56,111,loss,win,loss,2026-11-28 11:00:26
-fairfield-vs-navy,236921670,Navy,Fairfield,59,75,loss,win,loss,2026-11-28 11:00:26
-le-moyne-vs-maine,236921300,Le Moyne,Maine,86,90,loss,win,loss,2026-11-28 11:00:26
-georgetown-vs-ucla,241951520,Georgetown,UCLA,63,75,loss,loss,loss,2026-11-28 11:00:26
-bellarmine-vs-butler,236953160,Bellarmine,Butler,56,92,loss,loss,loss,2026-11-28 11:00:26
-auburn-montgomery-vs-uab,236953280,Auburn-Montgomery,UAB,62,102,push,push,loss,2026-11-28 11:00:26
-baylor-vs-tcu,241951610,Baylor,TCU,69,88,loss,win,loss,2026-11-28 11:00:26
-princeton-vs-unc-wilmington,236953260,Princeton,UNC Wilmington,66,68,win,loss,loss,2026-11-28 11:00:26
-louisiana-tech-vs-texas-state,236953250,Texas State,Louisiana Tech,78,70,win,win,win,2026-11-28 11:00:26
-bucknell-vs-la-salle,236922070,Bucknell,La Salle,86,89,win,win,loss,2026-11-28 11:00:26
-maryland-vs-oregon,241951600,Oregon,Maryland,88,73,win,win,win,2026-11-28 11:00:26
-colgate-vs-hofstra,237662280,Colgate,Hofstra,75,49,win,loss,win,2026-11-28 11:00:26
-arkansas-pine-bluff-vs-missouri,236953350,Arkansas-Pine Bluff,Missouri,61,97,win,win,loss,2026-11-28 11:00:26
-american-vs-radford,236921350,Radford,American,62,64,win,loss,loss,2026-11-28 11:00:26
-george-washington-vs-umbc,236953290,UMBC,George Washington,51,91,loss,loss,loss,2026-11-28 11:00:26
-boston-college-vs-cincinnati,237940100,Cincinnati,Boston College,70,59,win,loss,win,2026-11-28 11:00:26
-lafayette-vs-niagara,236990370,Niagara,Lafayette,54,82,loss,loss,loss,2026-11-28 11:00:26
-marquette-vs-texas-am,236921630,Texas A&M,Marquette,78,76,win,loss,win,2026-11-28 11:00:26
-saint-marys-vs-texas,241951530,Texas,Saint Mary's,76,73,loss,loss,win,2026-11-28 11:00:26
-kansas-vs-villanova,236953380,Villanova,Kansas,50,65,loss,loss,loss,2026-11-28 11:00:26
-old-dominion-vs-virginia-tech,236953400,Old Dominion,Virginia Tech,61,70,win,loss,loss,2026-11-28 11:00:26
-boise-state-vs-drake,236953240,Drake,Boise State,71,88,loss,win,loss,2026-11-28 11:00:26
-kansas-state-vs-michigan,241951540,Kansas State,Michigan,69,98,loss,win,loss,2026-11-28 11:00:26
-penn-vs-towson,236921150,Towson,Penn,72,61,win,loss,win,2026-11-28 11:00:26
-bowling-green-vs-indiana,236953330,Bowling Green,Indiana,57,93,loss,loss,loss,2026-11-28 11:00:26
-illinois-vs-western-kentucky,236953190,Western Kentucky,Illinois,76,116,loss,win,loss,2026-11-28 11:00:26
-georgia-vs-ucf,237940110,UCF,Georgia,88,76,win,win,win,2026-11-28 11:00:26
-lehigh-vs-uc-santa-barbara,237940220,Lehigh,UC Santa Barbara,43,75,loss,loss,loss,2026-11-28 11:00:26
-north-carolina-vs-west-virginia,236953210,West Virginia,North Carolina,72,59,win,loss,win,2026-11-28 11:00:26
-east-carolina-vs-nc-wesleyan,236953320,NC Wesleyan,East Carolina,43,92,push,push,loss,2026-11-28 11:00:26
-charleston-southern-vs-east-tennessee-state,236953200,Charleston Southern,East Tennessee State,76,67,win,win,win,2026-11-28 11:00:26
-mississippi-state-vs-penn-state,241946410,Penn State,Mississippi State,68,63,win,loss,win,2026-11-28 11:00:26
-houston-vs-oakland,236983580,Oakland,Houston,46,77,win,loss,loss,2026-11-28 11:00:26
-northeastern-vs-northwestern,236953370,Northeastern,Northwestern,61,65,win,loss,loss,2026-11-28 11:00:26
-missouri-state-vs-oral-roberts,236953300,Missouri State,Oral Roberts,66,72,loss,loss,loss,2026-11-28 11:00:26
-north-dakota-state-vs-north-texas,236953360,North Texas,North Dakota State,75,73,loss,win,win,2026-11-28 11:00:26
-idaho-vs-washington-state,238375770,Idaho,Washington State,61,69,win,loss,loss,2026-11-28 11:00:26
-pacific-vs-uc-davis,236953270,Pacific,UC Davis,78,61,win,win,win,2026-11-28 11:00:26
-alabama-vs-miami-fl,241951550,Alabama,Miami (FL),81,87,loss,loss,loss,2026-11-28 11:00:26
-kentucky-vs-wichita-state,236953230,Wichita State,Kentucky,73,71,win,loss,win,2026-11-28 11:00:26
-louisville-vs-tennessee,241951570,Louisville,Tennessee,84,64,win,loss,win,2026-11-28 11:00:26
-jacksonville-state-vs-omaha,236921610,Jacksonville State,Omaha,69,78,loss,win,loss,2026-11-28 11:00:26
-creighton-vs-gonzaga,241951630,Gonzaga,Creighton,89,97,loss,win,loss,2026-11-28 11:00:26
-san-diego-state-vs-texas-tech,241951620,Texas Tech,San Diego State,78,75,loss,win,win,2026-11-28 11:00:26
+virginia-vs-xavier,236922360,Virginia,Xavier,83,71,win,win,win,2026-11-28 11:15:17
+liberty-vs-st-thomas,236953220,Liberty,St. Thomas,76,67,win,loss,win,2026-11-28 11:15:17
+iowa-state-vs-st-johns,241951560,St. John's,Iowa State,80,75,win,win,win,2026-11-28 11:15:17
+merrimack-vs-vermont,236983570,Vermont,Merrimack,57,75,loss,win,loss,2026-11-28 11:15:17
+hampton-vs-umass-lowell,236921850,Hampton,UMass Lowell,55,72,loss,loss,loss,2026-11-28 11:15:17
+memphis-vs-wake-forest,241946400,Memphis,Wake Forest,88,85,win,win,win,2026-11-28 11:15:17
+fresno-state-vs-south-alabama,236921180,Fresno State,South Alabama,81,61,win,loss,win,2026-11-28 11:15:17
+southern-university-vs-vanderbilt,236953150,Southern University,Vanderbilt,56,111,loss,win,loss,2026-11-28 11:15:17
+fairfield-vs-navy,236921670,Navy,Fairfield,59,75,loss,win,loss,2026-11-28 11:15:17
+le-moyne-vs-maine,236921300,Le Moyne,Maine,86,90,loss,win,loss,2026-11-28 11:15:17
+georgetown-vs-ucla,241951520,Georgetown,UCLA,63,75,loss,loss,loss,2026-11-28 11:15:17
+bellarmine-vs-butler,236953160,Bellarmine,Butler,56,92,loss,loss,loss,2026-11-28 11:15:17
+auburn-montgomery-vs-uab,236953280,Auburn-Montgomery,UAB,62,102,push,push,loss,2026-11-28 11:15:17
+baylor-vs-tcu,241951610,Baylor,TCU,69,88,loss,win,loss,2026-11-28 11:15:17
+princeton-vs-unc-wilmington,236953260,Princeton,UNC Wilmington,66,68,win,loss,loss,2026-11-28 11:15:17
+louisiana-tech-vs-texas-state,236953250,Texas State,Louisiana Tech,78,70,win,win,win,2026-11-28 11:15:17
+bucknell-vs-la-salle,236922070,Bucknell,La Salle,86,89,win,win,loss,2026-11-28 11:15:17
+maryland-vs-oregon,241951600,Oregon,Maryland,88,73,win,win,win,2026-11-28 11:15:17
+colgate-vs-hofstra,237662280,Colgate,Hofstra,75,49,win,loss,win,2026-11-28 11:15:17
+arkansas-pine-bluff-vs-missouri,236953350,Arkansas-Pine Bluff,Missouri,61,97,win,win,loss,2026-11-28 11:15:17
+american-vs-radford,236921350,Radford,American,62,64,win,loss,loss,2026-11-28 11:15:17
+george-washington-vs-umbc,236953290,UMBC,George Washington,51,91,loss,loss,loss,2026-11-28 11:15:17
+boston-college-vs-cincinnati,237940100,Cincinnati,Boston College,70,59,win,loss,win,2026-11-28 11:15:17
+lafayette-vs-niagara,236990370,Niagara,Lafayette,54,82,loss,loss,loss,2026-11-28 11:15:17
+marquette-vs-texas-am,236921630,Texas A&M,Marquette,78,76,win,loss,win,2026-11-28 11:15:17
+saint-marys-vs-texas,241951530,Texas,Saint Mary's,76,73,loss,loss,win,2026-11-28 11:15:17
+kansas-vs-villanova,236953380,Villanova,Kansas,50,65,loss,loss,loss,2026-11-28 11:15:17
+old-dominion-vs-virginia-tech,236953400,Old Dominion,Virginia Tech,61,70,win,loss,loss,2026-11-28 11:15:17
+boise-state-vs-drake,236953240,Drake,Boise State,71,88,loss,win,loss,2026-11-28 11:15:17
+kansas-state-vs-michigan,241951540,Kansas State,Michigan,69,98,loss,win,loss,2026-11-28 11:15:17
+penn-vs-towson,236921150,Towson,Penn,72,61,win,loss,win,2026-11-28 11:15:17
+bowling-green-vs-indiana,236953330,Bowling Green,Indiana,57,93,loss,loss,loss,2026-11-28 11:15:17
+illinois-vs-western-kentucky,236953190,Western Kentucky,Illinois,76,116,loss,win,loss,2026-11-28 11:15:17
+georgia-vs-ucf,237940110,UCF,Georgia,88,76,win,win,win,2026-11-28 11:15:17
+lehigh-vs-uc-santa-barbara,237940220,Lehigh,UC Santa Barbara,43,75,loss,loss,loss,2026-11-28 11:15:17
+north-carolina-vs-west-virginia,236953210,West Virginia,North Carolina,72,59,win,loss,win,2026-11-28 11:15:17
+east-carolina-vs-nc-wesleyan,236953320,NC Wesleyan,East Carolina,43,92,push,push,loss,2026-11-28 11:15:17
+charleston-southern-vs-east-tennessee-state,236953200,Charleston Southern,East Tennessee State,76,67,win,win,win,2026-11-28 11:15:17
+mississippi-state-vs-penn-state,241946410,Penn State,Mississippi State,68,63,win,loss,win,2026-11-28 11:15:17
+houston-vs-oakland,236983580,Oakland,Houston,46,77,win,loss,loss,2026-11-28 11:15:17
+northeastern-vs-northwestern,236953370,Northeastern,Northwestern,61,65,win,loss,loss,2026-11-28 11:15:17
+missouri-state-vs-oral-roberts,236953300,Missouri State,Oral Roberts,66,72,loss,loss,loss,2026-11-28 11:15:17
+north-dakota-state-vs-north-texas,236953360,North Texas,North Dakota State,75,73,loss,win,win,2026-11-28 11:15:17
+idaho-vs-washington-state,238375770,Idaho,Washington State,61,69,win,loss,loss,2026-11-28 11:15:17
+pacific-vs-uc-davis,236953270,Pacific,UC Davis,78,61,win,win,win,2026-11-28 11:15:17
+alabama-vs-miami-fl,241951550,Alabama,Miami (FL),81,87,loss,loss,loss,2026-11-28 11:15:17
+kentucky-vs-wichita-state,236953230,Wichita State,Kentucky,73,71,win,loss,win,2026-11-28 11:15:17
+louisville-vs-tennessee,241951570,Louisville,Tennessee,84,64,win,loss,win,2026-11-28 11:15:17
+jacksonville-state-vs-omaha,236921610,Jacksonville State,Omaha,69,78,loss,win,loss,2026-11-28 11:15:17
+creighton-vs-gonzaga,241951630,Gonzaga,Creighton,89,97,loss,win,loss,2026-11-28 11:15:17
+san-diego-state-vs-texas-tech,241951620,Texas Tech,San Diego State,78,75,loss,win,win,2026-11-28 11:15:17
