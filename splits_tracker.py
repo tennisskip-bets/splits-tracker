@@ -167,6 +167,82 @@ def update_tips(date=None):
         print("tip times skipped:", e, file=sys.stderr)
 
 
+EVENT_URL = "https://www.scoresandodds.com/ncaab/events/{}/details"
+
+
+def parse_main_events(html_text):
+    """{event id: matchup slug} for each game card on the main page."""
+    soup = BeautifulSoup(html_text, "html.parser")
+    out = {}
+    for card in soup.find_all("div", class_="event-card", id=re.compile(r"^ncaab\.\d+$")):
+        a = card.find("a", href=SLUG_RE)
+        if a:
+            out[card["id"].split(".")[1]] = a["href"].split("?")[0].rstrip("/").split("/")[-1]
+    return out
+
+
+def _width(span):
+    m = re.search(r"width:\s*(\d+(?:\.\d+)?)%", span.get("style", "")) if span else None
+    return round(float(m[1])) if m else None
+
+
+def parse_details(html_text, slug):
+    """Rows (same shape as parse()) from one game's Game Details page.
+
+    The bars carry their percentage in the CSS width even when the label is
+    blank, so a side under ~5% is still captured here.
+    """
+    soup = BeautifulSoup(html_text, "html.parser")
+    ts = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
+    rows = []
+    for li in soup.select("ul.trend-graphs > li"):
+        bars = li.select("span.trend-graph-percentage")
+        strongs = li.select("span.trend-graph-sides strong")
+        if len(bars) < 2 or len(strongs) < 2:
+            continue
+        labels = []
+        for st in strongs[:2]:
+            t = st.get_text(" ", strip=True)
+            t = re.sub(r"\(\s+", "(", t)
+            labels.append(re.sub(r"\s+\)", ")", t))
+        vals = []
+        for bar in bars[:2]:
+            vals += [_width(bar.select_one("span.percentage-a")), _width(bar.select_one("span.percentage-b"))]
+        if None in vals:
+            continue
+        a_name, a_line = split_label(labels[0])
+        b_name, b_line = split_label(labels[1])
+        if a_name.lower().startswith("over"):
+            market = "total"
+        elif a_line:
+            market = "spread"
+        else:
+            market = "moneyline"
+        rows.append({"ts_et": ts, "slug": slug, "market": market, "side_a": a_name, "side_b": b_name,
+                     "line_a": a_line, "line_b": b_line, "bets_a": vals[0], "bets_b": vals[1],
+                     "money_a": vals[2], "money_b": vals[3], "raw": ""})
+    return rows
+
+
+def details_rows(main_html, have, limit=80):
+    """Game Details rows for games on the main page that the consensus page didn't cover."""
+    out, n = [], 0
+    for eid, slug in parse_main_events(main_html).items():
+        if slug in have:
+            continue
+        if n >= limit:
+            break
+        n += 1
+        try:
+            r = requests.get(EVENT_URL.format(eid), timeout=20, headers=UA)
+            r.raise_for_status()
+            out += parse_details(r.text, slug)
+        except Exception as e:
+            print(f"details {slug}: skipped ({e})", file=sys.stderr)
+        time.sleep(0.4)
+    return out
+
+
 MONTHS = {m: i for i, m in enumerate(
     ["January", "February", "March", "April", "May", "June", "July", "August",
      "September", "October", "November", "December"], 1)}
@@ -206,6 +282,14 @@ def snapshot(date=None, debug=False, markets=("spread", "total", "moneyline"), g
             print(f"{d}: skipped ({e})", file=sys.stderr)
             continue
         update_tips(d)
+        try:
+            main = requests.get(MAIN_URL, params={"date": d}, timeout=30, headers=UA).text
+            extra = details_rows(main, {r["slug"] for r in rows} | seen)
+            if extra:
+                print(f"{d}: {len({r['slug'] for r in extra})} games from Game Details")
+                rows += extra
+        except Exception as e:
+            print(f"{d}: Game Details skipped ({e})", file=sys.stderr)
         rows = [r for r in rows if r["market"] in markets and r["slug"] not in seen]
         seen |= {r["slug"] for r in rows}
         print(f"{d}: {len({r['slug'] for r in rows})} games")
