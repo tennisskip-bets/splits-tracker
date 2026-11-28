@@ -167,19 +167,58 @@ def update_tips(date=None):
         print("tip times skipped:", e, file=sys.stderr)
 
 
+MONTHS = {m: i for i, m in enumerate(
+    ["January", "February", "March", "April", "May", "June", "July", "August",
+     "September", "October", "November", "December"], 1)}
+
+
+def page_date(html_text):
+    """The day a consensus page says it is for ('YYYY-MM-DD'), from its title, else None."""
+    m = re.search(r"<title>[^<]*?(" + "|".join(MONTHS) + r")\s+(\d{1,2})(?:st|nd|rd|th)?,\s*(\d{4})",
+                  html_text)
+    return f"{m[3]}-{MONTHS[m[1]]:02d}-{int(m[2]):02d}" if m else None
+
+
 def snapshot(date=None, debug=False, markets=("spread", "total", "moneyline"), games=()):
-    rows = parse(fetch(date), debug=debug)
-    update_tips(date)
-    rows = [r for r in rows if r["market"] in markets]
+    """One snapshot. With no date: today and tomorrow (plus yesterday just after midnight).
+
+    A day's page is only saved if the page itself says it is for that day, so a
+    date the site ignores is skipped (and said so) instead of saving a duplicate.
+    """
+    now = datetime.now(ET)
+    if date:
+        todo = [(date, False)]
+    else:
+        days = [now - timedelta(days=1)] if now.hour < 5 else []
+        days += [now, now + timedelta(days=1)]
+        todo = [(d.strftime("%Y-%m-%d"), True) for d in days]
+    all_rows, seen = [], set()
+    for d, check in todo:
+        try:
+            html_text = fetch(d)
+            if check and page_date(html_text) != d:
+                print(f"{d}: page says {page_date(html_text)}, skipped")
+                continue
+            rows = parse(html_text, debug=debug)
+        except Exception as e:
+            if d == todo[0][0] and not date and d == now.strftime("%Y-%m-%d"):
+                raise
+            print(f"{d}: skipped ({e})", file=sys.stderr)
+            continue
+        update_tips(d)
+        rows = [r for r in rows if r["market"] in markets and r["slug"] not in seen]
+        seen |= {r["slug"] for r in rows}
+        print(f"{d}: {len({r['slug'] for r in rows})} games")
+        all_rows += rows
     if games:
-        rows = [r for r in rows if any(g in r["slug"].lower() for g in games)]
-    if not rows:
+        all_rows = [r for r in all_rows if any(g in r["slug"].lower() for g in games)]
+    if not all_rows:
         print("No split blocks found. The page may be JS-rendered or its markup changed; "
               "re-run with --debug (or switch to Playwright).", file=sys.stderr)
         return 0
-    append(rows)
-    print(f"{rows[0]['ts_et']}  saved {len(rows)} rows -> {LOG}")
-    return len(rows)
+    append(all_rows)
+    print(f"{all_rows[0]['ts_et']}  saved {len(all_rows)} rows -> {LOG}")
+    return len(all_rows)
 
 
 def plot(query):

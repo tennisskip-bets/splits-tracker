@@ -322,7 +322,9 @@ def chart(snaps, tip, market, side):
     return "".join(p)
 
 
-def history(market, snaps):
+def history(market, snaps, side=""):
+    side = html.escape(side)
+    pre = {"total": "O/U ", "spread": f"{side} "}.get(market, "")
     rows, last_key = [], None
     for s in snaps:
         key = (s["line"], s["bets"], s["money"])
@@ -331,12 +333,12 @@ def history(market, snaps):
             last_key = key
     rows = rows[-HIST_ROWS:][::-1]
     body = "".join(
-        f"<tr><td>{stamp(s['t'])}</td><td>{fmt_line(market, s['line']) or '-'}</td>"
+        f"<tr><td>{stamp(s['t'])}</td><td>{(pre + fmt_line(market, s['line'])) if s['line'] is not None else '-'}</td>"
         f"<td>{s['bets'] if s['bets'] is not None else '-'}</td>"
         f"<td>{s['money'] if s['money'] is not None else '-'}</td>"
         f"<td>{'%+d' % s['gap'] if s['gap'] is not None else '-'}</td></tr>" for s in rows)
     return ('<details><summary>History (changes only)</summary><table><tr><th>Time</th><th>Line</th>'
-            f'<th>Bets</th><th>Money</th><th>Gap</th></tr>{body}</table></details>')
+            f'<th>{side} bets %</th><th>{side} money %</th><th>Gap</th></tr>{body}</table></details>')
 
 
 def market_block(market, label, snaps, tip):
@@ -365,7 +367,7 @@ def market_block(market, label, snaps, tip):
     return len(flags), any(x.startswith("Reverse") for x in flags), (
         f'<div class="mk"><p class="h">{label}<span class="lnx">{line_txt}</span></p>'
         f'<p class="sides">Gap = money % minus bets % for {a} (vs {b})</p>{now_row}'
-        f'{chart(snaps, tip, market, last["a"])}{chips}{history(market, snaps)}</div>')
+        f'{chart(snaps, tip, market, last["a"])}{chips}{history(market, snaps, last["a"])}</div>')
 
 
 CSS = """
@@ -402,11 +404,13 @@ const q=document.getElementById('q'),f=document.getElementById('f'),r=document.g
 function key(c){const t=+c.dataset.tip,now=Date.now()/1000;const g=!t?2:(t>=now?0:1);return [g,g===1?-t:(g===0?t:0)]}
 function sortBy(k){const cs=[...list.children];cs.sort((a,b)=>{if(k==='flags'){const d=(+b.dataset.flags)-(+a.dataset.flags);if(d)return d}
 const A=key(a),B=key(b);return A[0]-B[0]||A[1]-B[1]||a.dataset.n.localeCompare(b.dataset.n)});
-cs.forEach(c=>list.appendChild(c));document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on',x.dataset.k===k))}
+cs.forEach(c=>list.appendChild(c));document.querySelectorAll('.seg:not(.days) button').forEach(x=>x.classList.toggle('on',x.dataset.k===k))}
+let day='all';
 function go(){const t=q.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{
-c.style.display=(c.dataset.n.includes(t)&&(!f.checked||+c.dataset.flags>0)&&(!r.checked||+c.dataset.rev>0))?'':'none'})}
+c.style.display=(c.dataset.n.includes(t)&&(!f.checked||+c.dataset.flags>0)&&(!r.checked||+c.dataset.rev>0)&&(day==='all'||c.dataset.day===day))?'':'none'})}
 q.addEventListener('input',go);f.addEventListener('change',go);r.addEventListener('change',go);
-document.querySelectorAll('.seg button').forEach(x=>x.addEventListener('click',()=>sortBy(x.dataset.k)));
+document.querySelectorAll('.seg:not(.days) button').forEach(x=>x.addEventListener('click',()=>sortBy(x.dataset.k)));
+document.querySelectorAll('.days button').forEach(x=>x.addEventListener('click',()=>{day=x.dataset.d;document.querySelectorAll('.days button').forEach(y=>y.classList.toggle('on',y===x));go()}));
 sortBy('start');
 """
 
@@ -462,7 +466,7 @@ def main():
         name = pretty(slug)
         card = (
             f'<div class="card" data-n="{html.escape(name.lower())}" '
-            f'data-tip="{int(tip.timestamp()) if tip else 0}" data-flags="{nflags}" data-rev="{1 if anyrev else 0}">'
+            f'data-tip="{int(tip.timestamp()) if tip else 0}" data-flags="{nflags}" data-rev="{1 if anyrev else 0}" data-day="{(tip.date() - NOW.date()).days if tip else 0}">'
             f'<div class="top"><h2>{html.escape(name)}</h2><div class="bd">{badge}</div></div>'
             f'<p class="sub">{status} · tracking since {stamp(first_ts)}</p>{"".join(blocks)}</div>')
         games.append({"tip": tip, "name": name, "html": card})
@@ -484,6 +488,8 @@ def main():
         '<input id="r" type="checkbox"> Reverse moves</label></div>'
         '<div class="seg"><span>Sort</span><button data-k="start" class="on">Start time</button>'
         '<button data-k="flags">Most flags</button></div>'
+        '<div class="seg days"><span>Day</span><button data-d="all" class="on">All</button>'
+        '<button data-d="0">Today</button><button data-d="1">Tomorrow</button></div>'
         f'<div id="list">{"".join(g["html"] for g in games)}</div>'
         '<p class="note">Chart key: blue line is money % minus bets % for the first listed side (above 0 means '
         'money is heavier than tickets); the black step line is the market line; an orange dashed line marks a '
