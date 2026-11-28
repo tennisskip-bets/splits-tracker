@@ -243,6 +243,77 @@ def details_rows(main_html, have, limit=80):
     return out
 
 
+RESULTS = "results.csv"
+RES_FIELDS = ["slug", "event_id", "away", "home", "away_score", "home_score",
+              "spread_cls_away", "total_cls_over", "ml_cls_away", "seen_et"]
+
+
+def parse_results(html_text):
+    """Final scores from the main page: {slug: row} for games marked FINAL.
+
+    The win/loss classes on the page are saved as-is for cross-checking only;
+    the report grades results itself from the scores and our own logged lines.
+    """
+    soup = BeautifulSoup(html_text, "html.parser")
+    stamp = datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S")
+    out = {}
+    for card in soup.find_all("div", class_="event-card", id=re.compile(r"^ncaab\.\d+$")):
+        a = card.find("a", href=SLUG_RE)
+        st = card.select_one('thead [data-field="state"]')
+        if not a or not st or not st.get_text(strip=True).upper().startswith("FINAL"):
+            continue
+        sides = {}
+        for tr in card.select("tr.event-card-row"):
+            side = tr.get("data-side")
+            sc = tr.select_one(".event-card-score")
+            nm = tr.select_one(".team-name a")
+            try:
+                score = int(sc.get_text(strip=True))
+            except (AttributeError, ValueError):
+                continue
+            def cls(field):
+                td = tr.select_one(f'[data-field="{field}"]')
+                return next((c for c in (td.get("class") or []) if c in ("win", "loss", "push")), "") if td else ""
+            sides[side] = {
+                "score": score, "name": re.sub(r"\s*\(\d+\)$", "", nm.get_text(strip=True)) if nm else "",
+                "spread": cls("live-spread"), "total": cls("live-total"), "ml": cls("live-moneyline"),
+            }
+        if "away" not in sides or "home" not in sides:
+            continue
+        slug = a["href"].split("?")[0].rstrip("/").split("/")[-1]
+        out[slug] = {
+            "slug": slug, "event_id": card["id"].split(".")[1],
+            "away": sides["away"]["name"], "home": sides["home"]["name"],
+            "away_score": sides["away"]["score"], "home_score": sides["home"]["score"],
+            "spread_cls_away": sides["away"]["spread"], "total_cls_over": sides["away"]["total"],
+            "ml_cls_away": sides["away"]["ml"], "seen_et": stamp,
+        }
+    return out
+
+
+def update_results(date=None):
+    """Save final scores to results.csv. Never raises: collecting splits comes first."""
+    try:
+        r = requests.get(MAIN_URL, params={"date": date} if date else None, timeout=30, headers=UA)
+        r.raise_for_status()
+        found = parse_results(r.text)
+        old = {}
+        if os.path.exists(RESULTS):
+            old = {x["slug"]: x for x in csv.DictReader(open(RESULTS, encoding="utf-8-sig"))}
+        new = 0
+        for slug, row in found.items():
+            if slug not in old:
+                new += 1
+            old[slug] = row
+        with open(RESULTS, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=RES_FIELDS)
+            w.writeheader()
+            w.writerows(old.values())
+        print(f"results: {len(found)} final games on the {date or 'current'} page, {new} new -> {RESULTS}")
+    except Exception as e:
+        print("results skipped:", e, file=sys.stderr)
+
+
 MONTHS = {m: i for i, m in enumerate(
     ["January", "February", "March", "April", "May", "June", "July", "August",
      "September", "October", "November", "December"], 1)}
@@ -268,6 +339,9 @@ def snapshot(date=None, debug=False, markets=("spread", "total", "moneyline"), g
         days = [now - timedelta(days=1)] if now.hour < 5 else []
         days += [now, now + timedelta(days=1)]
         todo = [(d.strftime("%Y-%m-%d"), True) for d in days]
+    if not date:
+        for d in {(now - timedelta(days=1)).strftime("%Y-%m-%d"), now.strftime("%Y-%m-%d")}:
+            update_results(d)
     all_rows, seen = [], set()
     for d, check in todo:
         try:
