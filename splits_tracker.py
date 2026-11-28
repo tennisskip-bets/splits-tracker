@@ -111,33 +111,34 @@ TIP_RE = re.compile(r"(\d{1,2})/(\d{1,2})\s+(\d{1,2}):(\d{2})\s*([AP]M)", re.I)
 def parse_tips(html_text, now=None):
     """Read each game's tip-off time (ET) from the main NCAAB page.
 
-    Returns ({slug: 'YYYY-MM-DD HH:MM'}, number of games seen). Each game's
-    header (e.g. '11/26 1:30PM') is looked up in the table that precedes the
-    game's Matchup link, so a game with no time is skipped, never guessed.
+    Returns ({slug: 'YYYY-MM-DD HH:MM'}, number of games seen). Sources, in order:
+    1) the page's schema.org event data (startDate with a UTC offset),
+    2) each game card's data-time (unix seconds).
+    A game with no time is skipped, never guessed.
     """
-    now = now or datetime.now(ET)
     soup = BeautifulSoup(html_text, "html.parser")
-    tips, games = {}, set()
-    for a in soup.find_all("a", href=SLUG_RE):
-        slug = a["href"].split("?")[0].rstrip("/").split("/")[-1]
-        if slug in games:
-            continue
-        games.add(slug)
-        table = a.find_previous("table")
-        m = TIP_RE.search(table.get_text(" ", strip=True)) if table else None
-        if not m:
-            continue
-        mo, dy, hh, mm, ap = int(m[1]), int(m[2]), int(m[3]), int(m[4]), m[5].upper()
-        hh = hh % 12 + (12 if ap == "PM" else 0)
+    games = {a["href"].split("?")[0].rstrip("/").split("/")[-1]
+             for a in soup.find_all("a", href=SLUG_RE)}
+    tips = {}
+    for m in re.finditer(r'"url":"https://www\.scoresandodds\.com/ncaab/([^"/]+-vs-[^"/]+)"'
+                         r'[^}]*\},"startDate":"([^"]+)"', html_text):
         try:
-            tip = datetime(now.year, mo, dy, hh, mm, tzinfo=ET)
+            t = datetime.fromisoformat(m[2]).astimezone(ET)
         except ValueError:
             continue
-        if (tip - now).days > 180:
-            tip = tip.replace(year=now.year - 1)
-        elif (now - tip).days > 180:
-            tip = tip.replace(year=now.year + 1)
-        tips[slug] = tip.strftime("%Y-%m-%d %H:%M")
+        tips[m[1]] = t.strftime("%Y-%m-%d %H:%M")
+    for card in soup.find_all("div", class_="event-card", attrs={"data-time": True}):
+        a = card.find("a", href=SLUG_RE)
+        if not a:
+            continue
+        slug = a["href"].split("?")[0].rstrip("/").split("/")[-1]
+        if slug in tips:
+            continue
+        try:
+            tips[slug] = datetime.fromtimestamp(int(card["data-time"]), ET).strftime("%Y-%m-%d %H:%M")
+        except (ValueError, OSError):
+            continue
+    games |= set(tips)
     return tips, len(games)
 
 
