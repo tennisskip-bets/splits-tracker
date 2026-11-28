@@ -23,6 +23,7 @@ jobs:
           wc -l < splits_log.csv > /tmp/before
           python splits_tracker.py once
           cp tip_times.csv /tmp/tip_times.csv 2>/dev/null || true
+          cp results.csv /tmp/results.csv 2>/dev/null || true
       - name: Save results
         run: |
           git config user.name "splits-bot"
@@ -35,9 +36,13 @@ jobs:
             git reset --hard origin/main -q
             cat /tmp/new_rows.csv >> splits_log.csv
             [ -f /tmp/tip_times.csv ] && cp /tmp/tip_times.csv tip_times.csv
+            [ -f /tmp/results.csv ] && cp /tmp/results.csv results.csv
             python build_page.py
+            python build_report.py || echo "report skipped"
             git add splits_log.csv docs/index.html
             [ -f tip_times.csv ] && git add tip_times.csv
+            [ -f results.csv ] && git add results.csv
+            [ -f docs/report.html ] && git add docs/report.html
             git commit -qm "snapshot $(date -u +%FT%TZ)"
             if git push; then exit 0; fi
             sleep $((RANDOM % 10 + 3))
