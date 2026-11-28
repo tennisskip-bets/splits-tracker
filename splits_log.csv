@@ -18790,3 +18790,105 @@ ts_et,slug,market,side_a,side_b,line_a,line_b,bets_a,bets_b,money_a,money_b,raw
 2026-11-28 07:15:18,duquesne-vs-south-carolina-state,moneyline,SCST,DUQ,,,,,,,SCST % of Bets DUQ 98% 93% % of Money Best away Odds +2000 › + Best home Odds -2400 › +
 2026-11-28 07:15:18,california-vs-minnesota,moneyline,CAL,MINN,,,,,,,CAL % of Bets MINN 99% 98% % of Money Best away Odds +275 › + Best home Odds -285 › +
 2026-11-28 07:15:18,california-vs-minnesota,total,Over,Under,o143.5,u143.5,80,20,91,9,
+2026-11-28 07:30:24,princeton-vs-st-thomas,moneyline,PRIN,UST,,,16,84,86,14,
+2026-11-28 07:30:24,princeton-vs-st-thomas,spread,PRIN,UST,+2.5,-2.5,58,42,77,23,
+2026-11-28 07:30:24,princeton-vs-st-thomas,total,Over,Under,o143.5,u143.5,73,27,72,28,
+2026-11-28 07:30:24,elon-vs-nc-state,moneyline,ELON,NCST,,,,,,,ELON % of Bets NCST 95% 99% % of Money Best away Odds +2400 › + Best home Odds -3233 › +
+2026-11-28 07:30:24,elon-vs-nc-state,spread,ELON,NCST,+20.5,-20.5,51,49,30,70,
+2026-11-28 07:30:24,elon-vs-nc-state,total,Over,Under,o149.5,u149.5,63,37,67,33,
+2026-11-28 07:30:24,seton-hall-vs-siena,moneyline,SIE,HALL,,,,,,,SIE % of Bets HALL 94% 18% 82% % of Money Best away Odds +1329 › + Best home Odds -1567 › +
+2026-11-28 07:30:24,seton-hall-vs-siena,spread,SIE,HALL,+17.5,-17.5,53,47,36,64,
+2026-11-28 07:30:24,seton-hall-vs-siena,total,Over,Under,o156.5,u156.5,40,60,30,70,
+2026-11-28 07:30:24,northern-iowa-vs-robert-morris,moneyline,RMU,UNI,,,,,,,RMU % of Bets UNI 94% 97% % of Money Best away Odds +225 › + Best home Odds -233 › +
+2026-11-28 07:30:24,northern-iowa-vs-robert-morris,total,Over,Under,o147.5,u147.5,66,34,65,35,
+2026-11-28 07:30:24,purdue-fort-wayne-vs-wofford,moneyline,WOF,PFW,,,,,,,WOF % of Bets PFW 17% 83% 94% % of Money Best away Odds +125 › + Best home Odds -127 › +
+2026-11-28 07:30:24,purdue-fort-wayne-vs-wofford,total,Over,Under,o154.5,u154.5,60,40,72,28,
+2026-11-28 07:30:24,hampton-vs-radford,moneyline,HAMP,RAD,,,31,69,64,36,
+2026-11-28 07:30:24,hampton-vs-radford,total,Over,Under,o134.5,u134.5,76,24,81,19,
+2026-11-28 07:30:24,alcorn-state-vs-georgia-tech,moneyline,ALCN,GT,,,,,,,ALCN % of Bets GT 94% 98% % of Money Best away Odds +4900 › + Best home Odds -9900 › +
+2026-11-28 07:30:24,alcorn-state-vs-georgia-tech,spread,ALCN,GT,+27.5,-27.5,50,50,17,83,
+2026-11-28 07:30:24,alcorn-state-vs-georgia-tech,total,Over,Under,o162.5,u162.5,43,57,43,57,
+2026-11-28 07:30:24,gardner-webb-vs-north-carolina-central,moneyline,NCCU,WEBB,,,17,83,48,52,
+2026-11-28 07:30:24,gardner-webb-vs-north-carolina-central,total,Over,Under,o137.5,u137.5,,,,,Over (o137.5) % of Bets Under (u137.5) 91% 81% 19% % of Money Best over o137.5 -104 › + Best under u137.5 -104 › +
+2026-11-28 07:30:24,colgate-vs-vermont,moneyline,COLG,UVM,,,67,33,15,85,
+2026-11-28 07:30:24,colgate-vs-vermont,total,Over,Under,o142.5,u142.5,58,42,47,53,
+2026-11-28 07:30:24,lehigh-vs-pepperdine,moneyline,LEH,PEPP,,,,,,,LEH % of Bets PEPP 96% 38% 62% % of Money Best away Odds +400 › + Best home Odds -426 › +
+2026-11-28 07:30:24,lehigh-vs-pepperdine,total,Over,Under,o148.5,u148.5,56,44,34,66,
+2026-11-28 07:30:24,george-mason-vs-marist,moneyline,MRST,GMU,,,,,,,MRST % of Bets GMU 98% 11% 89% % of Money Best away Odds +2000 › + Best home Odds -2400 › +
+2026-11-28 07:30:24,george-mason-vs-marist,total,Over,Under,o130.5,u130.5,,,,,Over (o130.5) % of Bets Under (u130.5) 92% 95% 5% % of Money Best over o128.5 -127 › + Best under u130.5 -105 › +
+2026-11-28 07:30:24,ball-state-vs-southern-indiana,moneyline,BALL,USI,,,,,,,BALL % of Bets USI 86% 14% 91% % of Money Best away Odds -150 › + Best home Odds +150 › +
+2026-11-28 07:30:24,ball-state-vs-southern-indiana,total,Over,Under,o138.5,u138.5,71,29,80,20,
+2026-11-28 07:30:24,fordham-vs-harvard,moneyline,FOR,HARV,,,,,,,FOR % of Bets HARV 89% 11% 96% % of Money Best away Odds -144 › + Best home Odds +140 › +
+2026-11-28 07:30:24,fordham-vs-harvard,total,Over,Under,o140.5,u140.5,79,21,80,20,
+2026-11-28 07:30:24,chattanooga-vs-troy,moneyline,TROY,CHAT,,,,,,,TROY % of Bets CHAT 95% 39% 61% % of Money Best away Odds +163 › + Best home Odds -170 › +
+2026-11-28 07:30:24,chattanooga-vs-troy,total,Over,Under,o146.5,u146.5,61,39,57,43,
+2026-11-28 07:30:24,manhattan-vs-morgan-state,moneyline,MAN,MORG,,,,,,,MAN % of Bets MORG 13% 87% 96% % of Money Best away Odds +133 › + Best home Odds -133 › +
+2026-11-28 07:30:24,manhattan-vs-morgan-state,total,Over,Under,o150.5,u150.5,48,52,38,62,
+2026-11-28 07:30:24,iowa-vs-prairie-view-am,moneyline,PV,IOWA,,,,,,,PV % of Bets IOWA 97% 91% % of Money Best away Odds +9900 › + Best home Odds -9900 › +
+2026-11-28 07:30:24,iowa-vs-prairie-view-am,total,Over,Under,o136.5,u136.5,81,19,70,30,
+2026-11-28 07:30:24,bradley-vs-chicago-state,moneyline,CHS,BRAD,,,,,,,CHS % of Bets BRAD 96% 92% % of Money Best away Odds +1150 › + Best home Odds -1329 › +
+2026-11-28 07:30:24,bradley-vs-chicago-state,total,Over,Under,o128.5,u128.5,81,19,55,45,
+2026-11-28 07:30:24,columbia-vs-north-florida,moneyline,UNF,CLMB,,,,,,,UNF % of Bets CLMB 97% 95% % of Money Best away Odds +1011 › + Best home Odds -1150 › +
+2026-11-28 07:30:24,columbia-vs-north-florida,total,Over,Under,o157.5,u157.5,52,48,41,59,
+2026-11-28 07:30:24,georgia-southern-vs-unc-asheville,moneyline,GASO,UNCA,,,,,,,GASO % of Bets UNCA 64% 36% 92% % of Money Best away Odds -117 › + Best home Odds +113 › +
+2026-11-28 07:30:24,georgia-southern-vs-unc-asheville,total,Over,Under,o157.5,u157.5,73,27,69,31,
+2026-11-28 07:30:24,high-point-vs-the-citadel,moneyline,CIT,HP,,,,,,,CIT % of Bets HP 95% 95% % of Money Best away Odds +4900 › + Best home Odds -9900 › +
+2026-11-28 07:30:24,high-point-vs-the-citadel,total,Over,Under,o143.5,u143.5,70,30,88,12,
+2026-11-28 07:30:24,presbyterian-vs-sacramento-state,moneyline,SAC,PRE,,,16,84,37,63,
+2026-11-28 07:30:24,presbyterian-vs-sacramento-state,total,Over,Under,o156.5,u156.5,37,63,19,81,
+2026-11-28 07:30:24,delaware-state-vs-north-carolina-at,moneyline,DSU,NCAT,,,,,,,DSU % of Bets NCAT 97% 97% % of Money Best away Odds +525 › + Best home Odds -567 › +
+2026-11-28 07:30:24,delaware-state-vs-north-carolina-at,total,Over,Under,o141.5,u141.5,73,27,73,27,
+2026-11-28 07:30:24,central-connecticut-state-vs-navy,moneyline,CCSU,NAVY,,,66,34,42,58,
+2026-11-28 07:30:24,central-connecticut-state-vs-navy,total,Over,Under,o127.5,u127.5,83,17,79,21,
+2026-11-28 07:30:24,east-texas-am-vs-marshall,moneyline,ETAM,MRSH,,,,,,,ETAM % of Bets MRSH 97% 98% % of Money Best away Odds +335 › + Best home Odds -355 › +
+2026-11-28 07:30:24,east-texas-am-vs-marshall,total,Over,Under,o145.5,u145.5,73,27,65,35,
+2026-11-28 07:30:24,le-moyne-vs-niagara,moneyline,LMC,NIAG,,,63,37,74,26,
+2026-11-28 07:30:24,le-moyne-vs-niagara,total,Over,Under,o145.5,u145.5,75,25,77,23,
+2026-11-28 07:30:24,kansas-city-vs-southeast-missouri-state,moneyline,SEMO,UMKC,,,,,,,SEMO % of Bets UMKC 92% 16% 84% % of Money Best away Odds +127 › + Best home Odds -132 › +
+2026-11-28 07:30:24,kansas-city-vs-southeast-missouri-state,total,Over,Under,o146.5,u146.5,64,36,57,43,
+2026-11-28 07:30:24,denver-vs-new-mexico-state,moneyline,DEN,NMSU,,,,,,,DEN % of Bets NMSU 95% 79% 21% % of Money Best away Odds +156 › + Best home Odds -163 › +
+2026-11-28 07:30:24,denver-vs-new-mexico-state,total,Over,Under,o142.5,u142.5,78,22,81,19,
+2026-11-28 07:30:24,coastal-carolina-vs-western-illinois,moneyline,WIU,CCAR,,,,,,,WIU % of Bets CCAR 99% 98% % of Money Best away Odds +567 › + Best home Odds -669 › +
+2026-11-28 07:30:24,coastal-carolina-vs-western-illinois,total,Over,Under,o140.5,u140.5,80,20,79,21,
+2026-11-28 07:30:24,toledo-vs-valparaiso,moneyline,TOL,VALP,,,,,,,TOL % of Bets VALP 95% 98% % of Money Best away Odds +156 › + Best home Odds -163 › +
+2026-11-28 07:30:24,toledo-vs-valparaiso,total,Over,Under,o151.5,u151.5,58,42,51,49,
+2026-11-28 07:30:24,liberty-vs-unc-wilmington,moneyline,LIB,UNCW,,,,,,,LIB % of Bets UNCW 97% 93% % of Money Best away Odds +210 › + Best home Odds -220 › +
+2026-11-28 07:30:24,liberty-vs-unc-wilmington,total,Over,Under,o149.5,u149.5,89,11,92,8,
+2026-11-28 07:30:24,air-force-vs-brown,moneyline,BRWN,AFA,,,,,,,BRWN % of Bets AFA 93% 94% % of Money Best away Odds +127 › + Best home Odds -133 › +
+2026-11-28 07:30:24,air-force-vs-brown,total,Over,Under,o157.5,u157.5,80,20,74,26,
+2026-11-28 07:30:24,eastern-illinois-vs-northern-illinois,moneyline,NIU,EIU,,,,,,,NIU % of Bets EIU 97% 23% 77% % of Money Best away Odds -567 › + Best home Odds +525 › +
+2026-11-28 07:30:24,eastern-illinois-vs-northern-illinois,total,Over,Under,o139.5,u139.5,75,25,78,22,
+2026-11-28 07:30:24,unlv-vs-ut-rio-grande-valley,moneyline,UTRGV,UNLV,,,,,,,UTRGV % of Bets UNLV 99% 99% % of Money Best away Odds +525 › + Best home Odds -567 › +
+2026-11-28 07:30:24,unlv-vs-ut-rio-grande-valley,total,Over,Under,o149.5,u149.5,67,33,67,33,
+2026-11-28 07:30:24,boise-state-vs-north-texas,total,Over,Under,o153.5,u153.5,46,54,58,42,
+2026-11-28 07:30:24,buffalo-vs-towson,moneyline,BUFF,TOWS,,,,,,,BUFF % of Bets TOWS 93% 11% 89% % of Money Best away Odds +150 › + Best home Odds -150 › +
+2026-11-28 07:30:24,buffalo-vs-towson,total,Over,Under,o138.5,u138.5,89,11,92,8,
+2026-11-28 07:30:24,hofstra-vs-merrimack,moneyline,MRMK,HOF,,,,,,,MRMK % of Bets HOF 14% 86% 95% % of Money Best away Odds +115 › + Best home Odds -122 › +
+2026-11-28 07:30:24,hofstra-vs-merrimack,total,Over,Under,o124.5,u124.5,,,,,Over (o124.5) % of Bets Under (u124.5) 94% 98% 2% % of Money Best over o123.5 -113 › + Best under u124.5 -105 › +
+2026-11-28 07:30:24,delaware-vs-stony-brook,moneyline,DEL,STON,,,,,,,DEL % of Bets STON 96% 16% 84% % of Money Best away Odds +210 › + Best home Odds -212 › +
+2026-11-28 07:30:24,delaware-vs-stony-brook,total,Over,Under,o136.5,u136.5,,,,,Over (o136.5) % of Bets Under (u136.5) 95% 99% 1% % of Money Best over o136.5 -112 › + Best under u137.5 -104 › +
+2026-11-28 07:30:24,northern-colorado-vs-san-diego,moneyline,UNCO,USD,,,,,,,UNCO % of Bets USD 98% 99% % of Money Best away Odds +900 › + Best home Odds -1011 › +
+2026-11-28 07:30:24,northern-colorado-vs-san-diego,total,Over,Under,o146.5,u146.5,78,22,68,32,
+2026-11-28 07:30:24,eastern-kentucky-vs-tennessee-tech,moneyline,TNTC,EKY,,,,,,,TNTC % of Bets EKY 95% 98% % of Money Best away Odds -178 › + Best home Odds +178 › +
+2026-11-28 07:30:24,eastern-kentucky-vs-tennessee-tech,total,Over,Under,o169.5,u169.5,20,80,43,57,
+2026-11-28 07:30:24,drexel-vs-mount-st-marys,moneyline,DREX,MSM,,,,,,,DREX % of Bets MSM 95% 96% % of Money Best away Odds -194 › + Best home Odds +186 › +
+2026-11-28 07:30:24,drexel-vs-mount-st-marys,total,Over,Under,o136.5,u136.5,,,,,Over (o136.5) % of Bets Under (u136.5) 98% 98% 2% % of Money Best over o136.5 -109 › + Best under u137.5 -110 › +
+2026-11-28 07:30:24,san-jose-state-vs-utah-valley,moneyline,SJSU,UVU,,,,,,,SJSU % of Bets UVU 97% 93% % of Money Best away Odds +233 › + Best home Odds -245 › +
+2026-11-28 07:30:24,san-jose-state-vs-utah-valley,total,Over,Under,o154.5,u154.5,63,37,96,4,
+2026-11-28 07:30:24,louisiana-vs-mcneese,moneyline,MCNS,UL,,,,,,,MCNS % of Bets UL 97% 94% % of Money Best away Odds -285 › + Best home Odds +270 › +
+2026-11-28 07:30:24,louisiana-vs-mcneese,total,Over,Under,o138.5,u138.5,86,14,88,12,
+2026-11-28 07:30:24,american-vs-umass-lowell,moneyline,MASSL,AMER,,,,,,,MASSL % of Bets AMER 99% 93% % of Money Best away Odds +245 › + Best home Odds -257 › +
+2026-11-28 07:30:24,american-vs-umass-lowell,total,Over,Under,o139.5,u139.5,71,29,65,35,
+2026-11-28 07:30:24,lafayette-vs-maine,total,Over,Under,o134.5,u134.5,87,13,91,9,
+2026-11-28 07:30:24,seattle-vs-uc-irvine,total,Over,Under,o137.5,u137.5,90,10,87,13,
+2026-11-28 07:30:24,cal-state-fullerton-vs-weber-state,moneyline,WEB,CSF,,,,,,,WEB % of Bets CSF 97% 96% % of Money Best away Odds +567 › + Best home Odds -600 › +
+2026-11-28 07:30:24,drake-vs-north-dakota-state,moneyline,NDSU,DRKE,,,,,,,NDSU % of Bets DRKE 96% 99% % of Money Best away Odds +194 › + Best home Odds -203 › +
+2026-11-28 07:30:24,drake-vs-north-dakota-state,total,Over,Under,o142.5,u142.5,84,16,86,14,
+2026-11-28 07:30:24,south-alabama-vs-south-dakota-state,total,Over,Under,o139.5,u139.5,88,12,84,16,
+2026-11-28 07:30:24,richmond-vs-vmi,moneyline,VMI,RICH,,,,,,,VMI % of Bets RICH 98% 95% % of Money Best away Odds +1011 › + Best home Odds -1329 › +
+2026-11-28 07:30:24,bucknell-vs-penn,moneyline,BUCK,PENN,,,,,,,BUCK % of Bets PENN 97% 99% % of Money Best away Odds +1150 › + Best home Odds -1329 › +
+2026-11-28 07:30:24,army-vs-rider,total,Over,Under,o135.5,u135.5,85,15,90,10,
+2026-11-28 07:30:24,charleston-southern-vs-morehead-state,total,Over,Under,o150.5,u150.5,76,24,73,27,
+2026-11-28 07:30:24,duquesne-vs-south-carolina-state,moneyline,SCST,DUQ,,,,,,,SCST % of Bets DUQ 98% 93% % of Money Best away Odds +1900 › + Best home Odds -2400 › +
+2026-11-28 07:30:24,california-vs-minnesota,moneyline,CAL,MINN,,,,,,,CAL % of Bets MINN 99% 98% % of Money Best away Odds +275 › + Best home Odds -285 › +
+2026-11-28 07:30:24,california-vs-minnesota,total,Over,Under,o143.5,u143.5,80,20,91,9,
